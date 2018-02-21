@@ -1,0 +1,36 @@
+{block content}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1>Paypal payment</h1>
+			</div>
+			<div class="col-md-12">
+				{var $total = 0}
+				<table class="table table-bordered table-hover">
+					<thead>
+					<tr>
+						<th>Product</th>
+						<th>Price</th>
+					</tr>
+					</thead>
+					<tbody>
+					{foreach $order as $product}
+						<tr>
+							<td>{$product['products_name']}</td>
+							<td>{$product['products_price_retail']|currency}</td>
+							{var $total = $total + $product['products_price_retail']}
+						</tr>
+					{/foreach}
+					<tr>
+						<td><b>Total</b></td>
+						<td>{$total|currency}</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-12">
+				<a n:href="finishOrder, 'PayerID' => $payerId, 'paymentId' => $paymentId"> Pay with PayPal</a>
+			</div>
+		</div>
+	</div>
+{/block}

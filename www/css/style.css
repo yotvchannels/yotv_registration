@@ -1,0 +1,30 @@
+body {
+    background: #DFE2E1;
+    margin: 10px;
+}
+
+
+.btn-primary {
+    background: #F68B1F;
+    border-color: #F68B1F;
+}
+
+
+.btn-primary:hover{
+    background: #F68B1F;
+    border-color: #F68B1F;
+}
+
+.form-inline-error {
+    color: #F68B1F;
+}
+
+input[type=text],input[type=number], input[type=email], input[type=password]{
+    border: 1px solid #7C7C7C;
+    margin: 3px;
+}
+
+select{
+    border: 1px solid #7C7C7C;
+    margin: 3px;
+}

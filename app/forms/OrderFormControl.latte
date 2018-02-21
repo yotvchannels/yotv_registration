@@ -1,0 +1,52 @@
+{snippet}
+	<h2>Available subscription</h2>
+
+	<div n:snippet="orderPreview">
+		{if $selectedProducts !== NULL}
+			<div class="modal fade" id="orderPreviewModal">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title">
+								Order preview
+							</h4>
+						</div>
+						<div class="modal-body">
+							<table class="table">
+								{var $price = 0}
+								{foreach (array) $selectedProducts as $product}
+									<tr>
+										<td>{$availableProducts[$product][products_name]}</td>
+										<td>{$availableProducts[$product][products_price_retail]|currency}</td>
+										{var $price = $price + $availableProducts[$product][products_price_retail]}
+									</tr>
+								{/foreach}
+								<tr>
+									<td>Total</td>
+									<td><strong>{$price|currency}</strong></td>
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button style="float: left;" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<a href="{$paymentUrl}" class="btn btn-danger"><span class="glyphicon glyphicon-credit-card"></span> Continue to payment</a>
+						</div>
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			<script type="text/javascript">
+			$(function () {
+				$('#orderPreviewModal').modal();
+			});
+			</script>
+		{/if}
+	</div>
+
+	<p>Please select one product and then you can continue to the payment gateway.</p>
+	{if count($availableProducts) === 0}
+		<p>Unfortunately, there are no products available as of now.</p>
+	{else}
+		{control orderForm}
+	{/if}
+{/snippet}

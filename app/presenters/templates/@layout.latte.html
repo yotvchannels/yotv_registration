@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel='shortcut icon' type='image' href='{$basePath}/images/logo2.png'/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>yoTV</title>
+	{control cssJsLoader}
+</head>
+
+<body  style="font-family:Verdana;color:#000000;>
+
+{snippet flash}
+	<script type="text/javascript">
+		$.notifyClose();
+		{foreach $flashes as $flash}
+		notifyMessage({$flash->message}, {$flash->type});
+		{/foreach}
+	</script>
+{/snippet}
+
+<div style="text-align: center;">
+	<img src='{$basePath}/images/logo2.png'/>
+</div>
+<div style="clear: both;"></div>
+
+{include content}
+
+<div style="text-align: center;">
+	<img src='{$basePath}/images/logo1.png' style="width: 152px; height: 152px; "/>
+</div>
+<div style="clear: both;"></div>
+
+<script type="text/javascript">
+	$(function () {
+		$.nette.init();
+		$.nette.ext('abort', null);
+
+		$.nette.ext('error', {
+			error: function (jqXHR, status, error, settings) {
+				//console.log(jqXHR, status, error, settings);
+				if (status == 'abort') {
+					return;
+				}
+				alert('We have experienced error while processing your request. \n\nWe have been notified about this issue and we will resolve it shortly.');
+			}
+		});
+	});
+</script>
+
+</body>
+
+</html>

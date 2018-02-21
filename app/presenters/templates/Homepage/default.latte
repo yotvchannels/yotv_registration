@@ -1,0 +1,38 @@
+{block content}
+{var $modernDevice = NULL}
+{if !$customerNotFound}
+	{foreach $customer[devices] as $device}
+		{continueIf $device[type] !== 'modern_tv'}
+		{var $modernDevice = $device}
+	{/foreach}
+{/if}
+{if $customerNotFound && $modernDevice !== NULL}
+	Given customer not found
+{else}
+	<h1>Hello {$customer['viewers_firstname']} {$customer['viewers_lastname']}</h1>
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">Personal information</h3>
+		</div>
+		<div class="container-fluid" style=''>
+			<div class='row'>
+				<div class='col-sm-6'>
+					Device ID: {$modernDevice[device_modern_tv_account_id]}
+				</div>
+				<div class='col-sm-6'>
+					Login: {$modernDevice[device_modern_tv_login]}
+				</div>
+				<div class='col-sm-6'>
+					Email: {$modernDevice[device_modern_tv_email]}
+				</div>
+			</div>
+		</div>
+	</div>
+{/if}
+
+{control orderFormControl}
+
+
+{control transactionHistoryControl}
+
+

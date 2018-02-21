@@ -1,0 +1,57 @@
+<h3>Active subscriptions</h3>
+{if count($activeSubscriptions) === 0}
+	<p>You have no active susbcriptions</p>
+{/if}
+
+
+{foreach $activeSubscriptions as $subscription}
+	{first}
+		<div class="table-responsive">
+		<table class="table">
+		<thead>
+		<tr>
+			<th>Package</th>
+			<th>From</th>
+			<th>To</th>
+		</tr>
+		</thead>
+		<tbody>
+	{/first}
+	<tr>
+		<td>{$subscription[products_name]}</td>
+		<td>{$subscription[viewers_bouquets_active_from]|formatDateTime}</td>
+		<td>{$subscription[viewers_bouquets_active_to]|formatDateTime}</td>
+	</tr>
+	{last}
+		</tbody>
+		</table>
+		</div>{/last}
+{/foreach}
+
+{foreach $orders as $order}
+	{first}
+		<h2>Past orders</h2>
+		<table class="table table-stripped table-bordered table-hover">
+		<thead>
+		<tr>
+			<th>Date</th>
+			<th>Order number</th>
+			<th>Order status</th>
+			<th>Amount</th>
+			<th>Products</th>
+		</tr>
+		</thead>
+		<tbody>
+	{/first}
+	<tr>
+		<td>{$order[yotv_orders_created]|formatDateTime}</td>
+		<td>{$order[yotv_orders_mollie_id]}</td>
+		<td>{$order[yotv_orders_response]}</td>
+		<td>{$order[yotv_orders_amount]} USh</td>
+		<td>{$order[grouped_products]}</td>
+	</tr>
+	{last}
+		</tbody>
+		</table>{/last}
+{/foreach}
+
