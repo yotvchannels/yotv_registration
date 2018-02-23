@@ -1,14 +1,1 @@
-parameters:
-	apiSettings:
-		secret: modernitv
-		url: http://yotv.jacon.cz:5051/
-		token: kee7Leij
 
-
-php:
-	date.timezone: Europe/Prague
-
-application:
-	catchExceptions: false
-
-services:
